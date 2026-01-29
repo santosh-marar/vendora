@@ -47,3 +47,4 @@ next-env.d.ts
 *.tsx.map
 
 dump.sql
+.read
