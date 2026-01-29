@@ -84,7 +84,7 @@ const formSchema = z.object({
       ageRange: z.string().optional(),
       modelNumber: z.string().optional(),
       warranty: z.string().optional(),
-      attributes: z.record(z.any()),
+      attributes: z.record(z.string(), z.any()),
     })
   ),
   categoryName: z.enum(categoryNames),

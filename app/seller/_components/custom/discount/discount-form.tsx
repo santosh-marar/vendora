@@ -64,42 +64,19 @@ const formSchema = z
     description: z.string().optional(),
     discountType: z.nativeEnum(DiscountType),
     discountScope: z.nativeEnum(DiscountScope),
-    value: z.coerce.number().positive("Value must be positive"),
-    minPurchase: z.coerce
-      .number()
-      .positive("Minimum purchase must be positive")
-      .optional(),
-    minItems: z.coerce
-      .number()
-      .int()
-      .positive("Minimum items must be a positive integer")
-      .optional(),
-    usageLimit: z.coerce
-      .number()
-      .int()
-      .positive("Usage limit must be a positive integer")
-      .optional(),
+    value: z.number().positive("Value must be positive"),
+    minPurchase: z.number().positive("Minimum purchase must be positive").optional(),
+    minItems: z.number().int().positive("Minimum items must be a positive integer").optional(),
+    usageLimit: z.number().int().positive("Usage limit must be a positive integer").optional(),
     startDate: z.date().optional(),
     endDate: z.date().optional().nullable(),
-    isActive: z.boolean().default(true),
-    allowStacking: z.boolean().default(false),
-    priority: z.coerce
-      .number()
-      .int()
-      .positive("Priority must be a positive integer")
-      .default(1),
-    buyQuantity: z.coerce
-      .number()
-      .int()
-      .positive("Buy quantity must be a positive integer")
-      .optional(),
-    getQuantity: z.coerce
-      .number()
-      .int()
-      .positive("Get quantity must be a positive integer")
-      .optional(),
+    isActive: z.boolean(),
+    allowStacking: z.boolean(),
+    priority: z.number().int().positive("Priority must be a positive integer"),
+    buyQuantity: z.number().int().positive("Buy quantity must be a positive integer").optional(),
+    getQuantity: z.number().int().positive("Get quantity must be a positive integer").optional(),
     appliedToProductId: z.string().optional(),
-    autoApply: z.boolean().default(false),
+    autoApply: z.boolean(),
   })
   .refine(
     (data) => {

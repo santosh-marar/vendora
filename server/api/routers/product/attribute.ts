@@ -157,10 +157,12 @@ export const productAttributesRouter = createTRPCRouter({
       return ctx.db.genericAttributes.upsert({
         where: { productVariationId: input.productVariationId },
         create: {
-          ...input.attributes,
+          attributes: input.attributes.attributes as any,
           productVariationId: input.productVariationId,
         },
-        update: input.attributes,
+        update: {
+          attributes: input.attributes.attributes as any,
+        },
       });
     }),
 

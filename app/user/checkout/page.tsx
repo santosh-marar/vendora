@@ -76,7 +76,7 @@ interface CartItem {
   productVariation: ProductVariation;
   quantity: number;
   totalPrice: number;
-  totalDiscountPrice: number;
+  totalDiscountPrice: number | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -147,7 +147,7 @@ export default function Checkout() {
         productId: item.productId,
         productVariationId: item.productVariationId,
         quantity: item.quantity,
-        totalPrice: item.totalPrice,
+        price: item.totalPrice,
       })),
       subTotal, // Calculated subTotal
       shippingCost, // Calculated shipping cost
@@ -432,7 +432,7 @@ export default function Checkout() {
                         </p>
                       </div>
                       <span className="font-semibold">
-                        रु. {(item.price * item.quantity).toFixed(2)}
+                        रु. {item.totalPrice.toFixed(2)}
                       </span>
                     </div>
                   ))}

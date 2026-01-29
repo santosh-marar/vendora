@@ -144,7 +144,7 @@ export const UndergarmentAttributesSchema = z.object({
 
 // Generic attributes schema
 export const GenericAttributesSchema = z.object({
-  attributes: z.record(z.any()),
+  attributes: z.record(z.string(), z.any()),
 });
 
 export const attributeSchemaMap = {

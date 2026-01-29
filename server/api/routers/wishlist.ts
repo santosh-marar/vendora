@@ -157,7 +157,6 @@ export const wishlistRouter = createTRPCRouter({
           productId: input.productId,
           productVariationId: input.variationId || "",
           quantity: input.quantity,
-          price: price,
           totalPrice: price * input.quantity,
         },
         update: {

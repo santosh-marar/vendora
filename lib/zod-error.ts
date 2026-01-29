@@ -4,7 +4,7 @@ import { ZodError } from "zod";
 export function handleError(error: unknown) {
   if (error instanceof ZodError) {
     // Handle Zod validation errors
-    error.errors.forEach((err) => {
+    error.issues.forEach((err) => {
       const field = err.path.join(".");
       toast.error(`${field}: ${err.message}`);
     });

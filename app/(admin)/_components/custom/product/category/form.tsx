@@ -27,6 +27,9 @@ import { api } from "@/trpc/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ProductCategoryTable } from "./table";
 import { createProductCategorySchema, ProductCategory } from "@/validation/product/category";
+import { z } from "zod";
+
+type CreateProductCategory = z.infer<typeof createProductCategorySchema>;
 
 export function ProductCategoryForm() {
   const utils = api.useUtils();
@@ -37,7 +40,7 @@ export function ProductCategoryForm() {
   const getAllProductCategories = api.productCategory.getAll.useQuery();
   const createProductCategory = api.productCategory.create.useMutation();
 
-  const form = useForm<ProductCategory>({
+  const form = useForm<CreateProductCategory>({
     resolver: zodResolver(createProductCategorySchema),
     defaultValues: {
       name: "",
@@ -52,7 +55,7 @@ export function ProductCategoryForm() {
     }
   }, [getAllProductCategories.data]);
 
-  async function onSubmit(values: ProductCategory) {
+  async function onSubmit(values: CreateProductCategory) {
     setIsLoading(true);
     setError(null);
     try {
