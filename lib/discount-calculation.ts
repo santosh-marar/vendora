@@ -74,7 +74,7 @@ export function calculateDiscountPrice(
 ): number {
   switch (discount.discountType) {
     case "PERCENTAGE":
-      return originalPrice * (1 - discount.value / 100);
+      return Math.max(originalPrice * (1 - discount.value / 100), 0);
     case "FIXED_AMOUNT":
       return Math.max(originalPrice - discount.value, 0);
     case "BUY_X_GET_Y":
